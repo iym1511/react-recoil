@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { todoListState } from "../hooks/todoRecoil";
 
-// 고유한 Id 생성을 위한 유틸리티
-// let id = 0;
 
 const TodoItemCreator = () => {
 

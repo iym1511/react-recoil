@@ -24,6 +24,7 @@ export const filteredTodoListState = selector({
       default:
         return list;
     }
+    
   },
 });
 

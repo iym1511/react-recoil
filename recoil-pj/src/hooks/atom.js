@@ -9,7 +9,6 @@ export const selectorState = selector({
   key: "Auth",
   get: ({ get }) => {
     const inputResult = get(btnState);
-
     return inputResult;
   },
 });

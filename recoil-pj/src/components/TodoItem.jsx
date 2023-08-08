@@ -3,6 +3,7 @@ import { todoListState } from "../hooks/todoRecoil";
 import { useState } from "react";
 
 function replaceItemAtIndex(arr, index, newValue) {
+  console.log([...arr.slice(index + 1)])
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 }
 
@@ -36,22 +37,25 @@ const TodoItem = ({ item }) => {
     setTodoList(newList);
   };
 
-  const recommentItem = () => {
+  const recommentHandler = () => {
     setRecomment((prev) => !prev);
   }
 
   return (
     <div>
-      <p>{item.id}</p>
-      { recomment ? <input type="text" value={item.text} onChange={editItemText} /> : <p>{item.text}</p>}
-      
+      <span>{item.id}. </span>
+      { recomment ? 
+        <input type="text" value={item.text} onChange={editItemText} /> 
+        : 
+        <span>{item.text}</span>
+      }
       
       <input
         type="checkbox"
         checked={item.isComplete}
         onChange={toggleItemCompletion}
       />
-      <button onClick={recommentItem}>수정</button>
+      <button onClick={recommentHandler}>수정</button>
       <button onClick={deleteItem}>X</button>
     </div>
   );

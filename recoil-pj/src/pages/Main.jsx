@@ -1,5 +1,6 @@
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { autoFamilyState, btnState, objectState, selectorFamilyState, selectorState } from "../hooks/atom";
+import useDebounce from "../hooks/useDebounce";
 
 const Main = () => {
 
@@ -9,6 +10,8 @@ const Main = () => {
   const result = useRecoilValue(selectorState);
 
   const [objects, setObject] = useRecoilState(objectState);
+  const debounce = useDebounce(objects);
+  console.log(debounce)
 
   const atomFamilyNumber = useRecoilValue(autoFamilyState(2));
   // atomFamilyNumber의setState를 담당한다. state와 같은 인자를넣어 상태를읽고 업데이트함
@@ -19,6 +22,7 @@ const Main = () => {
   const inputHandler = (e) => {
     const { name, value } = e.target;
     setObject((prev) => ({...prev, [name]: value}))
+  
   }
 
   const atomFamilyHandler = (e) => {
@@ -36,7 +40,7 @@ const Main = () => {
       <h1>atom</h1>
       <button onClick={()=>{setText("문자1로 변환")}}>문자변환1</button>
       <button onClick={()=>{setText("문자2로 변환")}}>문자변환2</button>
-      <button onClick={()=> {resetState()}}>리셋</button>
+      <button onClick={()=> resetState()}>리셋</button>
       <h3>{globalstate}</h3>
       <h3>{text}</h3>
       <h3>selector : {result}</h3>

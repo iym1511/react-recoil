@@ -6,6 +6,7 @@ const GET_MOVIE = gql`
     movie(id:$movieId) {
       id
       title
+      small_cover_image
     }
   }
 `
@@ -19,8 +20,7 @@ const Movie = () => {
       movieId: id,
     }
   });
-  console.log(data)
-  console.log(loading)
+
   if(loading){
     return <h1>...fetching movie</h1>
   }
@@ -31,5 +31,5 @@ const Movie = () => {
     </div>
   );
 }
- 
+
 export default Movie;
